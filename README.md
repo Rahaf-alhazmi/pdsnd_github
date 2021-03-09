@@ -21,5 +21,12 @@ new_york_city.csv
 chicago.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+Python documentation
+Pandas documentation
+calling variable inside another function :
+https://stackoverflow.com/questions/10139866/calling-variable-defined-inside-one-function-from-another-function
+solve typerror problem :https://stackoverflow.com/questions/54126037/iterating-a-data-frame-column-typeerror-float-object-is-not-subscriptable
+introduction to python lessons :
+https://classroom.udacity.com/nanodegrees/nd104-mena-connect/parts/435cb8e0-77d0-4b60-9940-bc537b9463f6
+
 
