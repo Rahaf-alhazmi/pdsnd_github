@@ -70,7 +70,7 @@ def load_data(city, month, day):
     # extract month and day of week from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.day_name()
-    #create data fram of hour to extact hour   
+    #create hour data fram to extact hour   
     df['hour'] = df['Start Time'].dt.hour
 
     # filter by month if applicable
@@ -96,18 +96,18 @@ def time_stats(df):
      print('\nCalculating The Most Frequent Times of Travel...\n')
      start_time = time.time()
 
-    # to display the most common month i use mood() method 
+    # to display the most common month i use mode() method 
      common_month= df['month'].mode()[0]
      print('\nthe most common month is:\n ',common_month)
 
-    # TO display the most common day of week i use mood() method 
+    # TO display the most common day of week i use mode() method 
      common_Dayof_week=df['day_of_week'].mode()[0]
      print('\n The most common day in a week is:\n ',common_Dayof_week)
 
-    # TO display the most common start hour i need use mood() method
+    # TO display the most common start hour i need use mode() method
     
      common_early_hour=df['hour'].mode()[0]
-     print('\n The most common early hour in a day is: \n',common_early_hour)
+     print('\n The most common early hour on a day is: \n',common_early_hour)
 
 
      print("\nThis took %s seconds." % (time.time() - start_time))
@@ -120,19 +120,19 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # TO display most commonly used start station use mood() method
+    # TO display most commonly used start station use mode() method
     common_start_station=df['Start Station'].mode()[0]
     print('\n The most commonly used start station :\n ',common_start_station)
 
-    # TO display most commonly used end station i use mood()
+    # TO display most commonly used end station i use mode()
     common_Stop_station=df['End Station'].mode()[0]
-    print('\n The most commonly used start station :\n ',common_Stop_station)
+    print('\n The most commonly used stop station :\n ',common_Stop_station)
 
 
-    # TO display most frequent combination of start station and end station trip i need to create   new column combin of start+stop using str.cat() method columns then use mood()
+    # TO display most frequent combination of start station and end station trip i need to create new column combin of start+stop using str.cat() method columns then use mode()
     df['combin']=df['Start Station'].str.cat(df['End Station'],sep=" to ")
     combin_start_stop= df['combin'].mode()[0]
-    print('\n The most commonly used both start nad Stop station are :\n ',combin_start_stop)
+    print('\n The most commonly used both start and Stop station are :\n ',combin_start_stop)
 
 
 
@@ -171,20 +171,22 @@ def user_stats(df):
     user_types = df['User Type'].value_counts()
     print('\nDisplaying User Type counts...\n',user_types)
     # TO DO: Display counts of genderprint('\n Displaying Gender counts...\n'
-    #i put gender and birth year in handling error becuse these two coulmn are't exist         in washington table
+    #i put gender and birth year in handling error because these two coulmn are't exist in washington dataset
     try:
         gender=df['Gender'].value_counts()
         print('\nDisplaying count of gender\n',gender)
     except:
         print("\nThere is no 'Gender' column in this file.")      
 
-    # TO DO: Display earliest.min(), most recent.max(), and most common year of birth.mood()
+    # TO DO: Display earliest year by using min() method.
     try:
         print('\nCalculating year of birth...\n')
         early_birth=df['Birth Year'].min()
         print('\nThe earliest year of birth:\n',early_birth)
+		# to show the most recent birth year i used max() method 
         recent_birth=df['Birth Year'].max()
         print('\nThe most recent year of birth:\n',recent_birth)
+		#to show the most common year of birth i used the mood() method.
         common_birth=df['Birth Year'].mode()[0]
         print('\n the most common year of birth :\n ',common_birth)
     except:
