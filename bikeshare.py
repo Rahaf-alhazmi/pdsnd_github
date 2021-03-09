@@ -154,9 +154,15 @@ def trip_duration_stats(df):
 	hour, minute = divmod(minute, 60)
     print(f"The total trip duration is {hour} hours, {minute} minutes and {second} seconds.")
 
-    # TO DO: display mean travel time
+    # TO DO: display mean travel time in sec,min and hour
     mean_travel=round(df['Trip Duration'].mean())
-    print('\n The mean of travel time is:\n ',str( mean_travel))
+    mins, sec = divmod( mean_travel, 60)
+	#if mean_travel greater than 60 minutes convert into hour 
+    if mins > 60:
+        hrs, mins = divmod(mins, 60)
+        print(f"\nThe mean of travel time is: {hrs} hours, {mins} minutes and {sec} seconds.")
+    else:
+        print(f"\nThe mean of travel time is: {mins} minutes and {sec} seconds.")
 
 
         
